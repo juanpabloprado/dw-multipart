@@ -9,7 +9,6 @@ import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.dropwizard.views.ViewBundle;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
-import org.glassfish.jersey.media.multipart.MultiPartFeature;
 
 import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
@@ -34,7 +33,6 @@ public class App extends Application<Configuration>
     @Override
     public void run(Configuration configuration, Environment environment) throws Exception {
         configureCors(environment);
-        environment.jersey().register(MultiPartFeature.class);
         environment.jersey().register(FileResource.class);
         environment.jersey().register(ClientResource.class);
     }

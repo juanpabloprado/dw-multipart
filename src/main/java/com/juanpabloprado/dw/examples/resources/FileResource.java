@@ -22,7 +22,6 @@ public class FileResource {
     @POST
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     public Response post(
-            @PathParam("id") String id,
             @FormDataParam("file") InputStream uploadedInputStream,
             @FormDataParam("file") FormDataContentDisposition fileDetail) throws MessagingException, IOException {
         // TODO: uploadFileLocation should come from config.yml

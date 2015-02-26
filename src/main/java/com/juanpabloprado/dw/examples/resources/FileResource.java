@@ -21,7 +21,7 @@ public class FileResource {
 
     @POST
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public Response post(
+    public Response uploadFile(
             @FormDataParam("file") InputStream uploadedInputStream,
             @FormDataParam("file") FormDataContentDisposition fileDetail) throws MessagingException, IOException {
         // TODO: uploadFileLocation should come from config.yml
@@ -36,10 +36,11 @@ public class FileResource {
     // save uploaded file to new location
     private void writeToFile(InputStream uploadedInputStream, String uploadedFileLocation) throws IOException {
         int read;
-        byte[] bytes = new byte[1024];
+        final int BUFFER_LENGTH = 1024;
+        final byte[] buffer = new byte[BUFFER_LENGTH];
         OutputStream out = new FileOutputStream(new File(uploadedFileLocation));
-        while ((read = uploadedInputStream.read(bytes)) != -1) {
-            out.write(bytes, 0, read);
+        while ((read = uploadedInputStream.read(buffer)) != -1) {
+            out.write(buffer, 0, read);
         }
         out.flush();
         out.close();

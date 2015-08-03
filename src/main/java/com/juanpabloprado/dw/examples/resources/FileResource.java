@@ -2,7 +2,6 @@ package com.juanpabloprado.dw.examples.resources;
 
 import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataParam;
-import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +22,7 @@ public class FileResource {
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     public Response uploadFile(
             @FormDataParam("file") InputStream uploadedInputStream,
-            @FormDataParam("file") FormDataContentDisposition fileDetail) throws MessagingException, IOException {
+            @FormDataParam("file") FormDataContentDisposition fileDetail) throws IOException {
         // TODO: uploadFileLocation should come from config.yml
         String uploadedFileLocation = "C:/Users/Juan/Pictures/uploads/" + fileDetail.getFileName();
         LOGGER.info(uploadedFileLocation);
